@@ -1,124 +1,133 @@
 'use strict';
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
-Write a function named returnTen, takes in a string and uses split and splice to return the last 10 characters from that string as elements of an array.
+Write a function named transformToLis that, given an object, returns an array of the key value pairs as html list items.
+For example:
+{
+  name: 'bob',
+  age: 32
+}
+Becomes:
+[
+<li>name: bob</li>,
+<li>age: 32</li>
+]
 ------------------------------------------------------------------------------------------------ */
-function returnTen(str) {
-  // Convert string to array
-  let arr = str.split('');
-  // Use splice to return last 10 elements
-  return arr.splice(-10);
+function transformToLis(obj) {
+  return Object.entries(obj).map(([key, value]) => `<li>${key}: ${value}</li>`);
 }
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
-Write a function named findMax that takes in a matrix of positive numbers and returns the number with the highest value.
-For example:
-[
-  [1, 3, 4, 5],
-  [4, 5, 6],
-  [23, 5, 5]
-]
-return: 23
+Write a function named count that, given an integer and an array of arrays, uses either filter, map, or reduce to count the amount of times the integer is present in the array of arrays.
+Note: You might need to use the same method more than once.
+For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
-const findMax = (matrix) => {
-  let maxNum = -Infinity; // set initial maxNum to -Infinity so any positive number in the matrix will be greater than it
-  for (let i = 0; i < matrix.length; i++) { // loop through each row in the matrix
-    for (let j = 0; j < matrix[i].length; j++) { // loop through each number in the current row
-      if (matrix[i][j] > maxNum) { // if the current number is greater than the current maxNum
-        maxNum = matrix[i][j]; // set maxNum to the current number
-      }
-    }
-  }
-  return maxNum; // return the maxNum after all numbers in the matrix have been checked
+const count = (target, input) => {
+  return input.reduce((acc, arr) => {
+    return acc + arr.filter((num) => num === target).length;
+  }, 0);
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
-Write a function named totalSum that takes in a matrix of numbers and returns the totalSum of all the numbers.
-For example:
-[
-  [1, 3, 4, 5],
-  [4, 5, 1],
-  [2, 5, 5]
-]
-return: 35
+Write a function that, given an array of integer arrays as input, calculates the total sum of all the elements in the array.
+You may want to use filter, map, or reduce for this problem, but are not required to. You may need to use the same method more than once.
+For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
-const totalSum = (matrix) => {
-  let sum = 0;
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-      sum += matrix[i][j];
-    }
-  }
-  return sum;
+const totalSum = (input) => {
+  return input.reduce((acc, arr) => {
+    return acc + arr.reduce((subAcc, num) => {
+      return subAcc + num;
+    }, 0);
+  }, 0);
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
-You friend Pat has a chain of stores around the greater Seattle area. He specializes in selling salmon cookies. Pat has data for the hourly sales of cookies per hour for each store. He wants to create an array of the total number of cookies sold per hour for all of his stores combined.
-Write a function named grandTotal that adds up the cookies sales for each hour of operation for all of the stores combined. For example, the first element in the hourlySales array should be the sum of the cookies sold in the 9:00 a.m. hour at all five stores combined.
-For this example, the total at 9:00 a.m. is 17 + 26 + 7 + 5 + 33, or 88 total cookies.
-Return the array of the total number of cookies sold per hour for all of the stores combined.
+Write a function named divisibleByFiveTwoToThePower that accepts an array of arrays as input.
+This function should first remove any elements that are not numbers or are not divisible by five.
+This function should then raise 2 to the power of the resulting numbers, returning an array of arrays.
+For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
-const hoursOpen = ['9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.'];
-const firstPike = [17, 18, 23, 24, 24, 12, 13, 27, 30, 20, 24, 18];
-const seaTac = [26, 5, 5, 59, 23, 39, 38, 20, 30, 7, 59, 43];
-const seattleCenter = [7, 14, 19, 22, 15, 4, 23, 27, 28, 23, 1, 29];
-const capHill = [5, 85, 58, 51, 50, 13, 33, 32, 47, 94, 31, 62];
-const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
-const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
-const grandTotal = (stores) => {
-  const totalCookiesPerHour = [];
-  for (let hourIndex = 0; hourIndex < hoursOpen.length; hourIndex++) {
-    let cookiesSoldThisHour = 0;
-    for (let storeIndex = 0; storeIndex < stores.length; storeIndex++) {
-      cookiesSoldThisHour += stores[storeIndex][hourIndex];
-    }
-    totalCookiesPerHour.push(cookiesSoldThisHour);
-  }
-  return totalCookiesPerHour;
+const divisibleByFiveTwoToThePower = (input) => {
+  return input.map((arr) => {
+    return arr.filter((num) => {
+      return typeof num === 'number' && num % 5 === 0;
+    }).map((num) => {
+      return Math.pow(2, num);
+    });
+  });
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
-Pat has decided that he would also like to organize his data as objects containing the number of cookies sold per hour and the time.
-Here is sample data for the 9:00 sales: { sales: '88 cookies', time: '9 a.m.' }.
-Write a function named salesData that uses forEach to iterate over the hourlySales array and create an object for each hour. Return an array of the formatted data.
+Write a function named findMaleAndFemale that, given the Star Wars data, below,
+returns the names of the characters whose gender is either male or female.
+The names should be combined into a single string with each character name separated by "and".
+For example, "C-3PO and Luke Skywalker".
 ------------------------------------------------------------------------------------------------ */
-const salesData = (hours, data) => {
-  return data.map((sales, index) => ({
-    sales: `${sales} cookies`,
-    time: hours[index]
-  }));
+let starWarsData = [{
+  name: 'Luke Skywalker',
+  height: '172',
+  mass: '77',
+  hair_color: 'blond',
+  skin_color: 'fair',
+  eye_color: 'blue',
+  birth_year: '19BBY',
+  gender: 'male',
+},
+{
+  name: 'C-3PO',
+  height: '167',
+  mass: '75',
+  hair_color: 'n/a',
+  skin_color: 'gold',
+  eye_color: 'yellow',
+  birth_year: '112BBY',
+  gender: 'n/a'
+},
+{
+  name: 'R2-D2',
+  height: '96',
+  mass: '32',
+  hair_color: 'n/a',
+  skin_color: 'white, blue',
+  eye_color: 'red',
+  birth_year: '33BBY',
+  gender: 'n/a'
+},
+{
+  name: 'Darth Vader',
+  height: '202',
+  mass: '136',
+  hair_color: 'none',
+  skin_color: 'white',
+  eye_color: 'yellow',
+  birth_year: '41.9BBY',
+  gender: 'male'
+},
+{
+  name: 'Leia Organa',
+  height: '150',
+  mass: '49',
+  hair_color: 'brown',
+  skin_color: 'light',
+  eye_color: 'brown',
+  birth_year: '19BBY',
+  gender: 'female'
+}];
+let findMaleAndFemale = (data) => {
+  let names = data.filter(character => character.gender === 'male' || character.gender === 'female')
+    .map(character => character.name)
+    .join(' and ');
+  return names;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
-Write a function named howManyTreats that will return the quantity of treats you need to pick up from the pet store today from this array. The structure of the array will not change.
+Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the character who is the shortest in height.
 ------------------------------------------------------------------------------------------------ */
-const errands = [
-  {
-    store: 'Grocery store',
-    items: [{ name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
-  },
-  {
-    store: 'Drug store',
-    items: [{ name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash', quantity: 1 }]
-  },
-  {
-    store: 'Pet store',
-    items: [{ name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 }]
-  }
-];
-const howManyTreats = (arr) => {
-  let treatsQuantity = 0;
-  arr.forEach((store) => {
-    if (store.store === 'Pet store') {
-      store.items.forEach((item) => {
-        if (item.name === 'Treats') {
-          treatsQuantity += item.quantity;
-        }
-      });
-    }
-  });
-  return treatsQuantity;
+let findShortest = (data) => {
+  let shortest = data.reduce((prev, current) => parseInt(prev.height) < parseInt(current.height) ? prev : current);
+  return shortest.name;
 };
+
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 7 - Stretch Goal
 
@@ -223,20 +232,20 @@ Run your tests from the console: jest challenge-12.test.js
 
 describe('Testing challenge 1', () => {
   test('it should return the last 10 characters of a string as an array', () => {
-    expect(returnTen('hello world')).toStrictEqual(['e','l','l','o',' ','w','o','r','l','d']);
-    expect(returnTen('world')).toStrictEqual(['w','o','r','l','d']);
+    expect(returnTen('hello world')).toStrictEqual(['e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']);
+    expect(returnTen('world')).toStrictEqual(['w', 'o', 'r', 'l', 'd']);
   });
 });
 
 describe('Testing challenge 2', () => {
   test('It should return the max value', () => {
-    expect(findMax([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(24);
+    expect(findMax([[13, 24, 24, 2], [2, 5, 6], [2, 3]])).toStrictEqual(24);
   });
 });
 
 describe('Testing challenge 3', () => {
   test('It should return the total sum', () => {
-    expect(totalSum([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(81);
+    expect(totalSum([[13, 24, 24, 2], [2, 5, 6], [2, 3]])).toStrictEqual(81);
     expect(totalSum([])).toStrictEqual(0);
   });
 });
