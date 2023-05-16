@@ -70,7 +70,6 @@ Code challenges should be completed within a folder named `code-challenges` unde
       - Your test file would require the challenge file found in the directory above, which has your exported function
         - i.e. `const reverse = require('../find-maximum-value.js');
 
-
 # Challenge Title
 Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
 
