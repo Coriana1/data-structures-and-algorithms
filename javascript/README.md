@@ -70,6 +70,26 @@ Code challenges should be completed within a folder named `code-challenges` unde
       - Your test file would require the challenge file found in the directory above, which has your exported function
         - i.e. `const reverse = require('../find-maximum-value.js');
 
+# Challenge Title
+Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
+
+## Whiteboard Process
+![lab01whiteboard](whiteboard1.png)
+
+
+## Approach & Efficiency
+It doesn't require any additional space of create a new array, because by swapping elements from both end of the array and gradually move towards the center, we can reverse the array in a memory-efficient manner.
+
+Time complexity - O(n) - n is the length of the array. The loop iterates until the front pointer is less than or equal to the end pointer, which takes approximately n/2 iterations. Therefore, the time complexity is linear with respect to the size of the array.
+
+The space complexity -O(1) because it uses a constant amount of additional space regardless of the size of the input array. It performs the reversal in place, modifying the original array without requiring any extra memory allocation.
+
+## Solution
+Declared the 'reverseArray function, declared variable named 'font' & assigned the value of startung index, delcalred variable named 'end' with assigned ending, set up loop to reverse elements of the array (end value greater than front), after loop when reserse is complete return modified array
+
+## Collab
+Ryan Galloway
+
 ## Running Tests
 
 If you setup your folders according to the above guidelines, running tests becomes a matter of deciding which tests you want to execute.  Jest does a good job at finding the test files that match what you specify in the test command

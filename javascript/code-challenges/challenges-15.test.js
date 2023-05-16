@@ -6,8 +6,15 @@ Write a function named screenForNames that takes in an array of strings and uses
 * the name must contain only letter characters (white spaces are ok)
 ------------------------------------------------------------------------------------------------ */
 const screenForNames = (arr) => {
-  // Solution code here...
-}
+  const nameRegex = /^(Mr\.|Mrs\.|Ms\.|Dr\.)\s[A-Za-z\s]+$/;
+  const filteredNames = [];
+  for (let name of arr) {
+    if (nameRegex.test(name)) {
+      filteredNames.push(name);
+    }
+  }
+  return filteredNames;
+};
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 Write a function named toTitleCase that takes in an array of strings and returns an array of strings with the first character in upper case and the rest as is.
