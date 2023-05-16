@@ -77,6 +77,7 @@ Write a function called reverseArray which takes an array as an argument. Withou
 ## Whiteboard Process
 ![lab01whiteboard](whiteboard1.png)
 
+
 ## Approach & Efficiency
 It doesn't require any additional space of create a new array, because by swapping elements from both end of the array and gradually move towards the center, we can reverse the array in a memory-efficient manner.
 
@@ -89,7 +90,6 @@ Declared the 'reverseArray function, declared variable named 'font' & assigned t
 
 ## Collab
 Ryan Galloway
-
 
 ## Running Tests
 
