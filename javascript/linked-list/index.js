@@ -11,13 +11,13 @@ class LinkedList {
   constructor(){
     this.head = null;
   }
-
+  // inserts new code w/ given value at beginning of link
   insert(value){
     let node = new Node(value);
     node.next = this.head;
     this.head = node;
   }
-
+  //appends new code w/ given value at end of list
   append(value){
     let node = new Node(value);
     if (!this.head){
@@ -32,7 +32,7 @@ class LinkedList {
     current.next = node;
   }
 
-
+  //checks if node w/ given value exist
   includes(value){
     let isInNode = false;
     let current = this.head;
@@ -44,7 +44,7 @@ class LinkedList {
     }
     return isInNode;
   }
-
+  // converts list to a string - appends each node's value to string with and arrow 2 represent conndection
   toString() {
     let linkedListString = '';
     let current = this.head;
@@ -59,6 +59,7 @@ class LinkedList {
     return linkedListString;
   }
 
+  //logs values of node to console (starts at head & moves to next node until end of list)
   traversal(){
     let current = this.head;
 
@@ -69,7 +70,5 @@ class LinkedList {
     }
   }
 }
-
-
 
 module.exports = LinkedList;
