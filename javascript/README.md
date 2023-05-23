@@ -88,7 +88,7 @@ The space complexity -O(1) because it uses a constant amount of additional space
 Declared the 'reverseArray function, declared variable named 'font' & assigned the value of startung index, delcalred variable named 'end' with assigned ending, set up loop to reverse elements of the array (end value greater than front), after loop when reserse is complete return modified array
 
 ## Collab
-Ryan Galloway
+Kenya Womack, Kao Sealor, Hayden Cooper, Donna
 
 ## Running Tests
 
